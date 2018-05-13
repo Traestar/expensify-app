@@ -34,6 +34,23 @@ export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
 });
+
+export const startRemoveExpense = ({ id } = {}) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).remove().then(() => {
+            dispatch(removeExpense({ id }));
+        });
+    };
+};
+
+
+// Expense Removal Challenge!
+
+// 1. Create startRemoveExpense (same call signature as removeExpense)
+// 2. Test startRemoveExpense with "should remove expenses from firebase"
+// 3. Use startRemoveExpense in EditExpensePage instead of removeExpense
+// 4. Adjust EditExpensePage tests
+
 // EDIT_EXPENSE
 
 export const editExpense = (id, updates) => ({
